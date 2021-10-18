@@ -1,0 +1,72 @@
+@import '../../abstracts/variables';
+
+.player {
+    background-color: $red;
+    position: fixed;
+    bottom: 0;
+    height: 100px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 99;
+}
+
+.details {
+    display: flex;
+    align-items: center;
+
+    &__image {
+        max-width: 100px;
+
+        img {
+            display: block;
+            width: 100%;
+        }
+    }
+
+    &__text {
+        padding-left: 20px;
+        color: $white;
+
+        p {
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        span {
+            font-size: 12px;
+            display: block;
+        }
+    }
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    button {
+        cursor: pointer;
+        color: $white;
+        background-color: transparent;
+
+        svg {
+            font-size: 20px;
+        }
+    }
+
+    &__play {
+        background-color: $red-light !important;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 25px;
+    }
+}

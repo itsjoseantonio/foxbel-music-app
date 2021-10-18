@@ -10,6 +10,7 @@ import SearchBox from './components/SearchBox';
 import User from './components/User';
 import ItemSong from './components/SongItem';
 import Button from './components/Button';
+import Player from './components/player';
 
 // Styles //
 import styles from './styles/views/Home.module.scss';
@@ -49,6 +50,7 @@ function App() {
                         <ItemSong image={image} name="21" artist="Adele" />
                         <ItemSong image={image} name="21" artist="Adele" />
                     </Collections>
+                    <Player />
                     <Button text="Reproducir" />
                     <Button text="Reproducir" altClass="outline" />
                 </main>
