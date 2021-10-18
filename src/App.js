@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 // Components //
 import Menu from './components/layouts/Menu';
@@ -26,6 +27,40 @@ const myLibrary = [
 ];
 
 function App() {
+    const [word, setWord] = useState('');
+
+    useEffect(() => {
+        const timeOut = setTimeout(() => {
+            getTrackAlbum();
+        }, 500);
+
+        return () => clearTimeout(timeOut);
+    }, [word]);
+
+    const getTrackAlbum = async () => {
+        let baseURL = 'https://api.deezer.com/search?q=track:';
+        const headers = {
+            'Access-Control-Allow-Origin': 'http://localhost:3000',
+            'Access-Control-Allow-Credentials': true,
+            'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+        };
+        const { data } = await axios.get(
+            `https://cors-anywhere.herokuapp.com/${baseURL}${word}`
+        );
+        console.log('Result: ', data);
+
+        try {
+        } catch (error) {}
+        // fetch(
+        //     'https://cors-anywhere.herokuapp.com/https://api.deezer.com/search?q=track:'
+        // )
+        //     .then((response) => response.json()) // one extra step
+        //     .then((data) => {
+        //         console.log(data);
+        //     })
+        //     .catch((error) => console.error(error));
+    };
+
     return (
         <div className="App">
             <div className={styles.container}>
@@ -35,7 +70,7 @@ function App() {
                 </Menu>
                 <main>
                     <Header>
-                        <SearchBox />
+                        <SearchBox word={word} setWord={setWord} />
                         <User name="Francisco M." />
                     </Header>
                     <Collections title="Resultados">

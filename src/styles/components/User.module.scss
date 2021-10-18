@@ -1,6 +1,8 @@
 @import '../abstracts/variables';
 
 .user {
+    cursor: pointer;
+
     svg {
         color: $red;
     }
