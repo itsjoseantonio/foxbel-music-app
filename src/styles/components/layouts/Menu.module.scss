@@ -4,4 +4,7 @@
     background-color: $dark-red;
     padding-top: 50px;
     width: 330px;
+    position: fixed;
+    height: 100%;
+    z-index: 98;
 }

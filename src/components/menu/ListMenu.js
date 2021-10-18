@@ -6,8 +6,8 @@ const ListMenu = ({ title, items }) => {
         <div className={styles.listMenu}>
             <h2>{title}</h2>
             <ul>
-                {items.map((ele) => (
-                    <li>{ele}</li>
+                {items.map((ele, i) => (
+                    <li key={i}>{ele}</li>
                 ))}
             </ul>
         </div>

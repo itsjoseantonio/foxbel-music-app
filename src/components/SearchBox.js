@@ -15,7 +15,7 @@ function SearchBox({ word, setWord }) {
             <input
                 value={word}
                 name=""
-                placeholder="Buscar"
+                placeholder="Buscar por canciones o álbum"
                 onChange={(e) => handleWord(e.target.value)}
             />
             <FontAwesomeIcon icon={faSearch} />

@@ -12,6 +12,10 @@
     align-items: center;
     justify-content: space-between;
     z-index: 99;
+
+    audio {
+        display: none;
+    }
 }
 
 .details {
@@ -35,11 +39,19 @@
             font-weight: 700;
             font-size: 14px;
             margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 350px;
         }
 
         span {
             font-size: 12px;
             display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 300px;
         }
     }
 }
@@ -48,6 +60,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -74px;
+    margin-top: -30px;
 
     button {
         cursor: pointer;

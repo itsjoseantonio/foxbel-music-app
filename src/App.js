@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
 // Components //
@@ -13,10 +13,11 @@ import ItemSong from './components/SongItem';
 import Button from './components/Button';
 import Player from './components/player';
 
+// Helpers //
+import { getByKey } from './utils/Helpers';
+
 // Styles //
 import styles from './styles/views/Home.module.scss';
-
-import image from './assets/images/avatar.png';
 
 const myLibrary = [
     'Recientes',
@@ -28,6 +29,10 @@ const myLibrary = [
 
 function App() {
     const [word, setWord] = useState('');
+    const [songs, setSongs] = useState([]);
+    const [albums, setAlbums] = useState([]);
+    const [allData, setAllData] = useState([]);
+    const [currentSong, setCurrentSong] = useState(null);
 
     useEffect(() => {
         const timeOut = setTimeout(() => {
@@ -38,27 +43,42 @@ function App() {
     }, [word]);
 
     const getTrackAlbum = async () => {
-        let baseURL = 'https://api.deezer.com/search?q=track:';
-        const headers = {
-            'Access-Control-Allow-Origin': 'http://localhost:3000',
-            'Access-Control-Allow-Credentials': true,
-            'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-        };
-        const { data } = await axios.get(
-            `https://cors-anywhere.herokuapp.com/${baseURL}${word}`
+        const songsURL = 'https://api.deezer.com/search?q=track:';
+        const albumsURL = 'https://api.deezer.com/search?q=album:';
+
+        const requestSongs = axios.get(
+            `https://api.allorigins.win/raw?url=${songsURL}${word}`
         );
-        console.log('Result: ', data);
+        const requestAlbums = axios.get(
+            `https://api.allorigins.win/raw?url=${albumsURL}${word}`
+        );
+
+        await axios.all([requestSongs, requestAlbums]).then(
+            axios.spread((...responses) => {
+                const { data: songs } = responses[0];
+                const { data: albums } = responses[1];
+
+                setSongs(songs.data);
+                setAlbums(albums.data);
+                setAllData([...songs.data, ...albums.data]);
+
+                console.log(songs, 'Songsss');
+                console.log(albums, 'Albumsss');
+            })
+        );
 
         try {
-        } catch (error) {}
-        // fetch(
-        //     'https://cors-anywhere.herokuapp.com/https://api.deezer.com/search?q=track:'
-        // )
-        //     .then((response) => response.json()) // one extra step
-        //     .then((data) => {
-        //         console.log(data);
-        //     })
-        //     .catch((error) => console.error(error));
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const handleItem = (event) => {
+        const idSong = event.currentTarget.dataset.id;
+        const itemSong = getByKey(allData, idSong);
+        setCurrentSong(itemSong);
+        console.log(idSong, allData, 'All Data');
+        console.log(itemSong);
     };
 
     return (
@@ -68,27 +88,73 @@ function App() {
                     <Logo />
                     <ListMenu title="Mi librería" items={myLibrary} />
                 </Menu>
-                <main>
+                <div className={styles.main}>
                     <Header>
                         <SearchBox word={word} setWord={setWord} />
                         <User name="Francisco M." />
                     </Header>
-                    <Collections title="Resultados">
-                        <ItemSong image={image} name="21" artist="Adele" />
-                        <ItemSong image={image} name="21" artist="Adele" />
-                        <ItemSong image={image} name="21" artist="Adele" />
-                        <ItemSong image={image} name="21" artist="Adele" />
-                        <ItemSong image={image} name="21" artist="Adele" />
-                        <ItemSong image={image} name="21" artist="Adele" />
-                        <ItemSong image={image} name="21" artist="Adele" />
-                        <ItemSong image={image} name="21" artist="Adele" />
-                        <ItemSong image={image} name="21" artist="Adele" />
-                        <ItemSong image={image} name="21" artist="Adele" />
-                    </Collections>
-                    <Player />
-                    <Button text="Reproducir" />
-                    <Button text="Reproducir" altClass="outline" />
-                </main>
+                    <main>
+                        {word ? (
+                            <>
+                                <Collections title="Canciones">
+                                    {songs &&
+                                        songs.map(
+                                            (
+                                                { id, title, artist, album },
+                                                i
+                                            ) => (
+                                                <ItemSong
+                                                    key={i}
+                                                    id={id}
+                                                    image={album.cover_medium}
+                                                    name={title}
+                                                    artist={artist.name}
+                                                    handleItem={handleItem}
+                                                />
+                                            )
+                                        )}
+                                </Collections>
+                                <Collections title="Albums">
+                                    {albums &&
+                                        albums.map(
+                                            (
+                                                { id, title, artist, album },
+                                                i
+                                            ) => (
+                                                <ItemSong
+                                                    key={i}
+                                                    id={id}
+                                                    image={album.cover_medium}
+                                                    name={title}
+                                                    artist={artist.name}
+                                                    handleItem={handleItem}
+                                                />
+                                            )
+                                        )}
+                                </Collections>
+                            </>
+                        ) : (
+                            <Collections title="Canciones">
+                                {songs &&
+                                    songs.map(
+                                        ({ id, title, artist, album }, i) => (
+                                            <ItemSong
+                                                key={id}
+                                                id={id}
+                                                image={album.cover_medium}
+                                                name={title}
+                                                artist={artist.name}
+                                                handleItem={handleItem}
+                                            />
+                                        )
+                                    )}
+                            </Collections>
+                        )}
+                        {currentSong && <Player item={currentSong} />}
+                        <Button text="Reproducir" data-id="red" />
+                        <Button text="Reproducir" altClass="outline" />
+                    </main>
+                </div>
             </div>
         </div>
     );

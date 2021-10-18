@@ -5,9 +5,9 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons';
 // Styles //
 import styles from '../styles/components/SongItem.module.scss';
 
-const ItemSong = ({ image, name, artist }) => {
+const ItemSong = ({ id, image, name, artist, handleItem }) => {
     return (
-        <div className={styles.songItem}>
+        <div className={styles.songItem} data-id={id} onClick={handleItem}>
             <div className={styles.songItem__image}>
                 <img src={image} alt="" />
                 <FontAwesomeIcon icon={faPlay} />
