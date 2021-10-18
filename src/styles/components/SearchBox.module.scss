@@ -1,0 +1,27 @@
+@import '../abstracts/variables';
+
+.searchBox {
+    position: relative;
+    max-width: 525px;
+    width: 100%;
+
+    input {
+        font-size: 18px;
+        color: $light-gray;
+        height: 36px;
+        outline: none;
+        border: 1px solid $gray;
+        border-radius: 18px;
+        width: 100%;
+        padding: 0 16px;
+        font-family: 'Quicksand', sans-serif;
+    }
+
+    svg {
+        position: absolute;
+        top: 50%;
+        margin-top: -8px;
+        right: 16px;
+        color: $gray;
+    }
+}

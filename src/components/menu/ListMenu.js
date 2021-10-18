@@ -1,10 +1,10 @@
 // Styles //
-import styles from '../styles/components/ListMenu.module.scss';
+import styles from '../../styles/components/menu/ListMenu.module.scss';
 
 const ListMenu = ({ title, items }) => {
     return (
         <div className={styles.listMenu}>
-            <h2>Mi librería</h2>
+            <h2>{title}</h2>
             <ul>
                 {items.map((ele) => (
                     <li>{ele}</li>

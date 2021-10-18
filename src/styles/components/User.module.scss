@@ -1,0 +1,12 @@
+@import '../abstracts/variables';
+
+.user {
+    svg {
+        color: $red;
+    }
+
+    span {
+        color: $gray-2;
+        margin-left: 12px;
+    }
+}

@@ -1,9 +1,20 @@
 import { useState, useEffect } from 'react';
 
 // Components //
-import Logo from './components/Logo';
-import ListMenu from './components/ListMenu';
+import Menu from './components/layouts/Menu';
+import Header from './components/layouts/Header';
+import Collections from './components/layouts/Collections';
+import Logo from './components/menu/Logo';
+import ListMenu from './components/menu/ListMenu';
 import SearchBox from './components/SearchBox';
+import User from './components/User';
+import ItemSong from './components/SongItem';
+import Button from './components/Button';
+
+// Styles //
+import styles from './styles/views/Home.module.scss';
+
+import image from './assets/images/avatar.png';
 
 const myLibrary = [
     'Recientes',
@@ -16,9 +27,32 @@ const myLibrary = [
 function App() {
     return (
         <div className="App">
-            <Logo />
-            <ListMenu title="Mi librería" items={myLibrary} />
-            <SearchBox />
+            <div className={styles.container}>
+                <Menu>
+                    <Logo />
+                    <ListMenu title="Mi librería" items={myLibrary} />
+                </Menu>
+                <main>
+                    <Header>
+                        <SearchBox />
+                        <User name="Francisco M." />
+                    </Header>
+                    <Collections title="Resultados">
+                        <ItemSong image={image} name="21" artist="Adele" />
+                        <ItemSong image={image} name="21" artist="Adele" />
+                        <ItemSong image={image} name="21" artist="Adele" />
+                        <ItemSong image={image} name="21" artist="Adele" />
+                        <ItemSong image={image} name="21" artist="Adele" />
+                        <ItemSong image={image} name="21" artist="Adele" />
+                        <ItemSong image={image} name="21" artist="Adele" />
+                        <ItemSong image={image} name="21" artist="Adele" />
+                        <ItemSong image={image} name="21" artist="Adele" />
+                        <ItemSong image={image} name="21" artist="Adele" />
+                    </Collections>
+                    <Button text="Reproducir" />
+                    <Button text="Reproducir" altClass="outline" />
+                </main>
+            </div>
         </div>
     );
 }

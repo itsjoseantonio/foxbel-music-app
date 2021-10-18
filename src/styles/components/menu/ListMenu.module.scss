@@ -1,0 +1,19 @@
+@import '../../abstracts/variables';
+
+.listMenu {
+    margin-bottom: 30px;
+    color: $white;
+
+    h2 {
+        font-size: 22px;
+        margin-bottom: 5px;
+        padding-left: 40px;
+    }
+
+    ul {
+        li {
+            margin-bottom: 8px;
+            padding: 0 40px;
+        }
+    }
+}

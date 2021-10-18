@@ -1,8 +1,14 @@
 // Styles //
-import styles from '../styles/components/SearchBox.module.scss';
+import styles from '../styles/components/Button.module.scss';
 
-function Button({ text }) {
-    return <button className={styles.button}> {text}</button>;
+function Button({ altClass, text }) {
+    return (
+        <button
+            className={`${styles.button}  ${altClass ? styles[altClass] : ''}`}
+        >
+            {text}
+        </button>
+    );
 }
 
 export default Button;

@@ -1,15 +1,15 @@
 // Icons //
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 // Styles //
 import styles from '../styles/components/User.module.scss';
 
-const User = () => {
+const User = ({ name }) => {
     return (
         <div className={styles.user}>
-            <FontAwesomeIcon icon={faSearch} />
-            <span>Francisco M.</span>
+            <FontAwesomeIcon icon={faUser} />
+            <span>{name}</span>
         </div>
     );
 };

@@ -1,0 +1,9 @@
+.container {
+    display: flex;
+    min-height: 100vh;
+
+    main {
+        width: calc(100% - 330px);
+        padding: 30px 40px;
+    }
+}

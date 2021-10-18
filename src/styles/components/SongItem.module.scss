@@ -1,0 +1,60 @@
+@import '../abstracts/variables';
+
+.songItem {
+    max-width: 160px;
+    position: relative;
+    cursor: pointer;
+
+    &__image {
+        position: relative;
+
+        img {
+            display: block;
+        }
+
+        svg {
+            font-size: 36px;
+            color: $white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -18px;
+            margin-left: -16px;
+        }
+    }
+
+    &__text {
+        padding-top: 8px;
+
+        p {
+            color: $dark-gray;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 18px;
+        }
+
+        span {
+            color: $gray;
+            font-size: 12px;
+            line-height: 15px;
+            display: block;
+        }
+    }
+
+    &__options {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        display: flex;
+        flex-direction: column;
+        z-index: 99;
+
+        span {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: $white;
+            margin-bottom: 3px;
+        }
+    }
+}
