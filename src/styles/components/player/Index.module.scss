@@ -12,9 +12,11 @@
     align-items: center;
     justify-content: space-between;
     z-index: 99;
+    padding-right: 32px;
 
     audio {
         display: none;
+        position: absolute;
     }
 }
 
@@ -85,5 +87,28 @@
         align-items: center;
         justify-content: center;
         margin: 0 25px;
+    }
+}
+
+.volumeWrap {
+    display: flex;
+    align-items: center;
+
+    &__control {
+        width: 100px;
+        margin-right: 40px;
+    }
+
+    &__meter {
+        height: 6px;
+    }
+
+    &__icon {
+        width: 36px;
+
+        svg {
+            font-size: 32px;
+            color: $white;
+        }
     }
 }

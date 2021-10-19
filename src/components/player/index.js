@@ -1,18 +1,29 @@
 import { useState, useEffect, useRef } from 'react';
 
+// Components //
+import Stack from '@mui/material/Stack';
+import Slider from '@mui/material/Slider';
+
 // Icons //
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay } from '@fortawesome/free-solid-svg-icons';
-import { faPause } from '@fortawesome/free-solid-svg-icons';
-import { faStepBackward } from '@fortawesome/free-solid-svg-icons';
-import { faStepForward } from '@fortawesome/free-solid-svg-icons';
+import {
+    faPlay,
+    faPause,
+    faStepBackward,
+    faStepForward,
+    faVolumeOff,
+    faVolumeMute,
+    faVolumeDown,
+    faVolumeUp,
+} from '@fortawesome/free-solid-svg-icons';
 
 // Styles //
 import styles from '../../styles/components/player/Index.module.scss';
 
 const Player = ({ item }) => {
-    let { title, album, artist, preview } = item;
+    const { title, album, artist, preview } = item;
     const [isPlaying, setIsPlaying] = useState(true);
+    const [volumeValue, setVolumeValue] = useState(50);
     const audioRef = useRef(null);
 
     useEffect(() => {
@@ -23,7 +34,6 @@ const Player = ({ item }) => {
     }, [item]);
 
     const handlePlay = () => {
-        console.log('Play/Pause');
         if (!isPlaying) {
             audioRef.current.play();
             setIsPlaying(true);
@@ -31,6 +41,12 @@ const Player = ({ item }) => {
             audioRef.current.pause();
             setIsPlaying(false);
         }
+    };
+
+    const handleVolume = (event, newValue) => {
+        setVolumeValue(newValue);
+        audioRef.current.volume = volumeValue / 100;
+        console.log(audioRef.current.volume);
     };
 
     return (
@@ -62,7 +78,44 @@ const Player = ({ item }) => {
                     <FontAwesomeIcon icon={faStepForward} />
                 </button>
             </div>
-            <div className={styles.volume}></div>
+            <div className={styles.volumeWrap}>
+                <div className={styles.volumeWrap__control}>
+                    <Stack
+                        spacing={2}
+                        direction="row"
+                        sx={{ mb: 0 }}
+                        alignItems="center"
+                    >
+                        <Slider
+                            className={styles.volumeWrap__meter}
+                            aria-label="Volume"
+                            value={volumeValue}
+                            onChange={handleVolume}
+                            sx={{
+                                color: '#fff',
+                                '& .MuiSlider-thumb': {
+                                    boxShadow: 'none !important',
+                                },
+                                '& .MuiSlider-root': {
+                                    height: '6px',
+                                },
+                            }}
+                        />
+                    </Stack>
+                </div>
+                <div className={styles.volumeWrap__icon}>
+                    {audioRef.current.volume < 0.1 && (
+                        <FontAwesomeIcon icon={faVolumeMute} />
+                    )}
+                    {audioRef.current.volume < 0.6 &&
+                        audioRef.current.volume > 0.1 && (
+                            <FontAwesomeIcon icon={faVolumeDown} />
+                        )}
+                    {audioRef.current.volume > 0.6 && (
+                        <FontAwesomeIcon icon={faVolumeUp} />
+                    )}
+                </div>
+            </div>
         </div>
     );
 };
