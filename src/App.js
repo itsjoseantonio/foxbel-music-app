@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 // Components //
@@ -20,13 +20,8 @@ import { getByKey } from './utils/Helpers';
 // Styles //
 import styles from './styles/views/Home.module.scss';
 
-const myLibrary = [
-    'Recientes',
-    'Artistas',
-    'Álbums',
-    'Canciones',
-    'Estaciones',
-];
+// Data Menu //
+import { myLibrary, myPlayList } from './components/menu/ListMenu.data';
 
 function App() {
     const [word, setWord] = useState('');
@@ -62,24 +57,14 @@ function App() {
                 setSongs(songsData.data);
                 setAlbums(albumsData.data);
                 setAllData([...songsData.data, ...albumsData.data]);
-
-                console.log(songsData, 'Songsss');
-                console.log(albumsData, 'Albumsss');
             })
         );
-
-        try {
-        } catch (error) {
-            console.log(error);
-        }
     };
 
     const handleItem = (event) => {
         const idSong = event.currentTarget.dataset.id;
         const itemSong = getByKey(allData, idSong);
         setCurrentSong(itemSong);
-        console.log(idSong, allData, 'All Data');
-        console.log(itemSong);
     };
 
     return (
@@ -88,6 +73,7 @@ function App() {
                 <Menu>
                     <Logo />
                     <ListMenu title="Mi librería" items={myLibrary} />
+                    <ListMenu title="Playlist" items={myPlayList} />
                 </Menu>
                 <div className={styles.main}>
                     <Header>
@@ -104,6 +90,7 @@ function App() {
                                             artist={allData[0].artist.name}
                                             image={allData[0].album.cover_big}
                                             id={allData[0].id}
+                                            handleItem={handleItem}
                                         >
                                             <Button
                                                 text="Reproducir"
@@ -162,6 +149,7 @@ function App() {
                                             artist={allData[0].artist.name}
                                             image={allData[0].album.cover_big}
                                             id={allData[0].id}
+                                            handleItem={handleItem}
                                         >
                                             <Button
                                                 text="Reproducir"

@@ -14,6 +14,25 @@
         li {
             margin-bottom: 8px;
             padding: 0 40px;
+            cursor: pointer;
+            position: relative;
+            transition: 100ms all ease;
         }
+    }
+}
+
+.active {
+    color: $red;
+    font-weight: 700;
+
+    &:before {
+        display: block;
+        content: '';
+        width: 5px;
+        left: 0;
+        position: absolute;
+        height: 20px;
+        top: 0;
+        background-color: $red;
     }
 }

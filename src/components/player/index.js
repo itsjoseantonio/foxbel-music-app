@@ -12,9 +12,6 @@ import {
     faStepBackward,
     faStepForward,
     faVolumeOff,
-    faVolumeMute,
-    faVolumeDown,
-    faVolumeUp,
 } from '@fortawesome/free-solid-svg-icons';
 
 // Styles //
@@ -104,19 +101,6 @@ const Player = ({ item }) => {
                 </div>
                 <div className={styles.volumeWrap__icon}>
                     <FontAwesomeIcon icon={faVolumeOff} />
-                    {/* {audioRef.current.volume &&
-                        audioRef.current.volume < 0.1 && (
-                            <FontAwesomeIcon icon={faVolumeMute} />
-                        )}
-                    {audioRef.current.volume &&
-                        audioRef.current.volume < 0.6 &&
-                        audioRef.current.volume > 0.1 && (
-                            <FontAwesomeIcon icon={faVolumeDown} />
-                        )}
-                    {audioRef.current.volume &&
-                        audioRef.current.volume > 0.6 && (
-                            <FontAwesomeIcon icon={faVolumeUp} />
-                        )} */}
                 </div>
             </div>
         </div>
