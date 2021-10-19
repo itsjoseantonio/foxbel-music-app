@@ -46,7 +46,6 @@ const Player = ({ item }) => {
     const handleVolume = (event, newValue) => {
         setVolumeValue(newValue);
         audioRef.current.volume = volumeValue / 100;
-        console.log(audioRef.current.volume);
     };
 
     return (
@@ -104,16 +103,20 @@ const Player = ({ item }) => {
                     </Stack>
                 </div>
                 <div className={styles.volumeWrap__icon}>
-                    {audioRef.current.volume < 0.1 && (
-                        <FontAwesomeIcon icon={faVolumeMute} />
-                    )}
-                    {audioRef.current.volume < 0.6 &&
+                    <FontAwesomeIcon icon={faVolumeOff} />
+                    {/* {audioRef.current.volume &&
+                        audioRef.current.volume < 0.1 && (
+                            <FontAwesomeIcon icon={faVolumeMute} />
+                        )}
+                    {audioRef.current.volume &&
+                        audioRef.current.volume < 0.6 &&
                         audioRef.current.volume > 0.1 && (
                             <FontAwesomeIcon icon={faVolumeDown} />
                         )}
-                    {audioRef.current.volume > 0.6 && (
-                        <FontAwesomeIcon icon={faVolumeUp} />
-                    )}
+                    {audioRef.current.volume &&
+                        audioRef.current.volume > 0.6 && (
+                            <FontAwesomeIcon icon={faVolumeUp} />
+                        )} */}
                 </div>
             </div>
         </div>

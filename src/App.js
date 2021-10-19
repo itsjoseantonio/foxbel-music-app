@@ -10,6 +10,7 @@ import ListMenu from './components/menu/ListMenu';
 import SearchBox from './components/SearchBox';
 import User from './components/User';
 import ItemSong from './components/SongItem';
+import TopItemSong from './components/TopSongItem';
 import Button from './components/Button';
 import Player from './components/player';
 
@@ -29,9 +30,9 @@ const myLibrary = [
 
 function App() {
     const [word, setWord] = useState('');
-    const [songs, setSongs] = useState([]);
-    const [albums, setAlbums] = useState([]);
-    const [allData, setAllData] = useState([]);
+    const [songs, setSongs] = useState(null);
+    const [albums, setAlbums] = useState(null);
+    const [allData, setAllData] = useState(null);
     const [currentSong, setCurrentSong] = useState(null);
 
     useEffect(() => {
@@ -55,15 +56,15 @@ function App() {
 
         await axios.all([requestSongs, requestAlbums]).then(
             axios.spread((...responses) => {
-                const { data: songs } = responses[0];
-                const { data: albums } = responses[1];
+                const { data: songsData } = responses[0];
+                const { data: albumsData } = responses[1];
 
-                setSongs(songs.data);
-                setAlbums(albums.data);
-                setAllData([...songs.data, ...albums.data]);
+                setSongs(songsData.data);
+                setAlbums(albumsData.data);
+                setAllData([...songsData.data, ...albumsData.data]);
 
-                console.log(songs, 'Songsss');
-                console.log(albums, 'Albumsss');
+                console.log(songsData, 'Songsss');
+                console.log(albumsData, 'Albumsss');
             })
         );
 
@@ -96,6 +97,25 @@ function App() {
                     <main>
                         {word ? (
                             <>
+                                <section className={styles.top} id="top">
+                                    {allData && (
+                                        <TopItemSong
+                                            name={allData[0].title}
+                                            artist={allData[0].artist.name}
+                                            image={allData[0].album.cover_big}
+                                            id={allData[0].id}
+                                        >
+                                            <Button
+                                                text="Reproducir"
+                                                data-id="red"
+                                            />
+                                            <Button
+                                                text="Seguir"
+                                                altClass="outline"
+                                            />
+                                        </TopItemSong>
+                                    )}
+                                </section>
                                 <Collections title="Canciones">
                                     {songs &&
                                         songs.map(
@@ -134,25 +154,47 @@ function App() {
                                 </Collections>
                             </>
                         ) : (
-                            <Collections title="Canciones">
-                                {songs &&
-                                    songs.map(
-                                        ({ id, title, artist, album }, i) => (
-                                            <ItemSong
-                                                key={id}
-                                                id={id}
-                                                image={album.cover_medium}
-                                                name={title}
-                                                artist={artist.name}
-                                                handleItem={handleItem}
+                            <>
+                                <section className={styles.top} id="top">
+                                    {allData && (
+                                        <TopItemSong
+                                            name={allData[0].title}
+                                            artist={allData[0].artist.name}
+                                            image={allData[0].album.cover_big}
+                                            id={allData[0].id}
+                                        >
+                                            <Button
+                                                text="Reproducir"
+                                                data-id="red"
                                             />
-                                        )
+                                            <Button
+                                                text="Seguir"
+                                                altClass="outline"
+                                            />
+                                        </TopItemSong>
                                     )}
-                            </Collections>
+                                </section>
+                                <Collections title="Canciones">
+                                    {songs &&
+                                        songs.map(
+                                            (
+                                                { id, title, artist, album },
+                                                i
+                                            ) => (
+                                                <ItemSong
+                                                    key={id}
+                                                    id={id}
+                                                    image={album.cover_medium}
+                                                    name={title}
+                                                    artist={artist.name}
+                                                    handleItem={handleItem}
+                                                />
+                                            )
+                                        )}
+                                </Collections>
+                            </>
                         )}
                         {currentSong && <Player item={currentSong} />}
-                        <Button text="Reproducir" data-id="red" />
-                        <Button text="Reproducir" altClass="outline" />
                     </main>
                 </div>
             </div>

@@ -1,0 +1,61 @@
+@import '../abstracts/variables';
+
+.topSongItem {
+    display: flex;
+    height: 250px;
+
+    &__image {
+        max-width: 250px;
+        width: 100%;
+        position: relative;
+        cursor: pointer;
+
+        img {
+            display: block;
+            width: 100%;
+        }
+
+        svg {
+            font-size: 72px;
+            color: $white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -36px;
+            margin-left: -31px;
+        }
+    }
+
+    &__text {
+        padding: 40px 32px 20px;
+        background-color: rgba($red-2, 1);
+        color: $white;
+    }
+}
+
+.title {
+    margin-bottom: 20px;
+
+    h2 {
+        font-size: 22px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+}
+
+.description {
+    margin-bottom: 55px;
+
+    p {
+        font-size: 12px;
+        line-height: 20px;
+    }
+}
+
+.actions {
+    button {
+        margin-right: 20px;
+    }
+}
