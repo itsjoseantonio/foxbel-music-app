@@ -13,3 +13,5 @@ Floxbex Music App
 -   React ref - useRef()
 -   Parent and child components
 -   Css modules
+-   Material UI
+-   Font Awesome
