@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/foxbel-music-app/static/css/main.d2a0a5f2.chunk.css",
-    "main.js": "/foxbel-music-app/static/js/main.2ab83aea.chunk.js",
-    "main.js.map": "/foxbel-music-app/static/js/main.2ab83aea.chunk.js.map",
+    "main.css": "/foxbel-music-app/static/css/main.3efea4d0.chunk.css",
+    "main.js": "/foxbel-music-app/static/js/main.32b10e61.chunk.js",
+    "main.js.map": "/foxbel-music-app/static/js/main.32b10e61.chunk.js.map",
     "runtime-main.js": "/foxbel-music-app/static/js/runtime-main.c202174a.js",
     "runtime-main.js.map": "/foxbel-music-app/static/js/runtime-main.c202174a.js.map",
-    "static/js/2.2b90cb38.chunk.js": "/foxbel-music-app/static/js/2.2b90cb38.chunk.js",
-    "static/js/2.2b90cb38.chunk.js.map": "/foxbel-music-app/static/js/2.2b90cb38.chunk.js.map",
+    "static/js/2.3c056f8e.chunk.js": "/foxbel-music-app/static/js/2.3c056f8e.chunk.js",
+    "static/js/2.3c056f8e.chunk.js.map": "/foxbel-music-app/static/js/2.3c056f8e.chunk.js.map",
     "index.html": "/foxbel-music-app/index.html",
-    "static/css/main.d2a0a5f2.chunk.css.map": "/foxbel-music-app/static/css/main.d2a0a5f2.chunk.css.map",
-    "static/js/2.2b90cb38.chunk.js.LICENSE.txt": "/foxbel-music-app/static/js/2.2b90cb38.chunk.js.LICENSE.txt"
+    "static/css/main.3efea4d0.chunk.css.map": "/foxbel-music-app/static/css/main.3efea4d0.chunk.css.map",
+    "static/js/2.3c056f8e.chunk.js.LICENSE.txt": "/foxbel-music-app/static/js/2.3c056f8e.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.c202174a.js",
-    "static/js/2.2b90cb38.chunk.js",
-    "static/css/main.d2a0a5f2.chunk.css",
-    "static/js/main.2ab83aea.chunk.js"
+    "static/js/2.3c056f8e.chunk.js",
+    "static/css/main.3efea4d0.chunk.css",
+    "static/js/main.32b10e61.chunk.js"
   ]
 }
